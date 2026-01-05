@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36121.58
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerstApp-Eindevaluatie", "KerstApp-Eindevaluatie\KerstApp-Eindevaluatie.csproj", "{0937C0FB-1AD0-4DBD-83CD-8F4C743DCB39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerstAppBL", "KerstAppBL\KerstAppBL.csproj", "{9C986846-628E-4B83-AE41-BD582BCA71E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerstAppDL", "KerstAppDL\KerstAppDL.csproj", "{E8F59459-7E49-44A9-9975-67A62382F591}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0937C0FB-1AD0-4DBD-83CD-8F4C743DCB39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0937C0FB-1AD0-4DBD-83CD-8F4C743DCB39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0937C0FB-1AD0-4DBD-83CD-8F4C743DCB39}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0937C0FB-1AD0-4DBD-83CD-8F4C743DCB39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0937C0FB-1AD0-4DBD-83CD-8F4C743DCB39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C986846-628E-4B83-AE41-BD582BCA71E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C986846-628E-4B83-AE41-BD582BCA71E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C986846-628E-4B83-AE41-BD582BCA71E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C986846-628E-4B83-AE41-BD582BCA71E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8F59459-7E49-44A9-9975-67A62382F591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8F59459-7E49-44A9-9975-67A62382F591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8F59459-7E49-44A9-9975-67A62382F591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8F59459-7E49-44A9-9975-67A62382F591}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5ADEA26-B254-4877-AD65-404B8762FFFE}
+	EndGlobalSection
+EndGlobal

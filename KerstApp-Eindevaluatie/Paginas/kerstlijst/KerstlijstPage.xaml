@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KerstApp_Eindevaluatie.Paginas.kerstlijst.KerstlijstPage"
+             Title="Kerstlijst">
+    <VerticalStackLayout Padding="12" Spacing="12">
+
+        <HorizontalStackLayout Spacing="12">
+            <Button Text="Nieuw" Command="{Binding NieuwComm}" />
+            <Button Text="Personen" Command="{Binding OpenPersonenCommand}" />
+            <Button Text="Verversen" Command="{Binding verversCmm}" />
+        </HorizontalStackLayout>
+
+        <CollectionView ItemsSource="{Binding Items}" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="8" ColumnDefinitions="80,*,Auto" RowDefinitions="Auto,Auto,Auto">
+
+                        <Image Grid.RowSpan="3"
+                               WidthRequest="70"
+                               HeightRequest="70"
+                               Aspect="AspectFill"
+                               Source="{Binding BeeldUrl}" />
+
+                        <Label Grid.Column="1"
+                               Text="{Binding Titel}"
+                               FontAttributes="Bold" />
+
+                        <Label Grid.Row="1" Grid.Column="1"
+                               Text="{Binding Prijs, StringFormat='Prijs: {0:C}'}"
+                               Opacity="0.7" />
+
+                        <Label Grid.Row="2" Grid.Column="1"
+                               Text="{Binding Omschrijving}"
+                               LineBreakMode="TailTruncation"
+                               MaxLines="2"
+                               Opacity="0.7" />
+
+                        <Button Grid.Column="2" Grid.RowSpan="3"
+                                Text="Open"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.OpenDetailCommand}"
+                                CommandParameter="{Binding .}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>

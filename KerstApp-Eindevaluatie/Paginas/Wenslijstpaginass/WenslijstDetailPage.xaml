@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KerstApp_Eindevaluatie.Paginas.Wenslijstpaginass.WenslijstDetailPage"
+             Title="WenslijstDetailPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="12">
+
+            <Label Text="{Binding Error}" TextColor="Red" IsVisible="{Binding Error}" />
+
+            <Entry Placeholder="Titel"
+                   Text="{Binding Item.Titel}" />
+
+            <Entry Placeholder="Website"
+                   Text="{Binding Item.Website}" />
+
+            <Editor Placeholder="Omschrijving"
+                    AutoSize="TextChanges"
+                    HeightRequest="120"
+                    Text="{Binding Item.Omschrijving}" />
+
+            <HorizontalStackLayout Spacing="12">
+                <Image WidthRequest="70"
+                       HeightRequest="70"
+                       Aspect="AspectFill"
+                       Source="{Binding Item.BeeldUrl}" />
+                <Entry Placeholder="Beeld URL"
+                       HorizontalOptions="FillAndExpand"
+                       Text="{Binding Item.BeeldUrl}" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="12">
+                <Button Text="Bewaren" Command="{Binding opslaanCmm}" />
+                <Button Text="Annuleren" Command="{Binding anulleer}" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

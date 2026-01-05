@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KerstApp_Eindevaluatie.Paginas.personen.PersonenVieewDetailpage"
+             Title="PersonenVieewDetailpage">
+    <VerticalStackLayout Padding="16" Spacing="12">
+        <Label Text="{Binding Error}" TextColor="Red" IsVisible="{Binding Error}" />
+
+        <Entry Placeholder="Voornaam"
+               Text="{Binding Item.Voornaam}" />
+
+        <Entry Placeholder="Achternaam"
+               Text="{Binding Item.Achternaam}" />
+
+        <HorizontalStackLayout Spacing="12">
+            <Button Text="Bewaren" Command="{Binding SaveCommand}" />
+            <Button Text="Annuleren" Command="{Binding CancelCommand}" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

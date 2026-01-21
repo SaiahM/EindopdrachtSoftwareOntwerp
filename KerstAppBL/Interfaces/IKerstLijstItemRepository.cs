@@ -9,7 +9,7 @@ namespace KerstAppBL.Interfaces
 {
     public interface IKerstLijstItemRepository
     {
-        public List<KerstlijstItem> GeefAlle();
+        public List<KerstlijstItem> GeefAlleKerstItem();
         public KerstlijstItem? GeefKerstlijstItemId(int id);
         public int VoegKerstlijstItem(KerstlijstItem kerstlijstItem);
         public bool VerwijderKerstlijstItem(int id);

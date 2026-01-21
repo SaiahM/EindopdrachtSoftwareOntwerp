@@ -1,7 +1,9 @@
-﻿using KerstApp_Eindevaluatie.Paginas;
+﻿using KerstApp_Eindevaluatie.Interfaces;
+using KerstApp_Eindevaluatie.Paginas;
 using KerstApp_Eindevaluatie.Paginas.kerstlijst;
 using KerstApp_Eindevaluatie.Paginas.personen;
 using KerstApp_Eindevaluatie.Paginas.Wenslijstpaginass;
+using KerstApp_Eindevaluatie.Service;
 using KerstApp_Eindevaluatie.ViewModels;
 using KerstApp_Eindevaluatie.ViewModels.Kertslijst;
 using KerstApp_Eindevaluatie.ViewModels.persoonen;
@@ -26,9 +28,9 @@ namespace KerstApp_Eindevaluatie
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            builder.Services.AddSingleton<IPersoonLiteDBrepository, PersoonLitedb>();
-            builder.Services.AddSingleton<IWensLijstItemDbRepository, WensItemLiteDB>();
-            builder.Services.AddSingleton<IKerstLijstItemRepository, KerstItemLiteDb>();
+            builder.Services.AddSingleton<IPersoonRepository, KerstAppRepository>();
+            builder.Services.AddSingleton<IWensLijstItemRepository, KerstAppRepository>();
+            builder.Services.AddSingleton<IKerstLijstItemRepository, KerstAppRepository>();
 
 
             builder.Services.AddSingleton<PersoonService>();
@@ -43,7 +45,7 @@ namespace KerstApp_Eindevaluatie
             Routing.RegisterRoute("wenslijst-detail", typeof(WenslijstDetailPage));
 
             Routing.RegisterRoute("kerstlijst", typeof(KerstlijstPage));
-            Routing.RegisterRoute("kerstlijst-detail", typeof(KerstlijstDetailPage));
+            Routing.RegisterRoute("KerstlijstDetailPage", typeof(KerstlijstDetailPage));
 
 
             builder.Services.AddTransient<MainPage>();
@@ -63,6 +65,10 @@ namespace KerstApp_Eindevaluatie
             builder.Services.AddTransient<KerstlijstDetailPage>();
             builder.Services.AddTransient<KerstlijstViewModel>();
             builder.Services.AddTransient<KerstlijstDetailViewModel>();
+
+           
+            builder.Services.AddTransient<INavigationService, NavigationService>();
+           
 
 
 #if DEBUG

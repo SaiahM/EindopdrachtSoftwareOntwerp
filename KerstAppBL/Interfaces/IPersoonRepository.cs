@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace KerstAppBL.Interfaces
 {
-    public  interface IPersoonLiteDBrepository
+    public  interface IPersoonRepository
     {
-        public List<Persoon> GeefAlle();
+        public List<Persoon> GeefAllePersonen();
         public Persoon? GeefPersoonId(int id);
         public int VoegPersoon(Persoon persoon);
         public bool Verwijder(int id);

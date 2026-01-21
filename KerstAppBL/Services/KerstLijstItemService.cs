@@ -13,7 +13,7 @@ namespace KerstAppBL.Services
         private IKerstLijstItemRepository Repo { get; } = repo;
         
 
-        public List<KerstlijstItem> GeefAlle() => Repo.GeefAlle();
+        public List<KerstlijstItem> GeefAlle() => Repo.GeefAlleKerstItem();
 
         public int VoegkerstitemToe(KerstlijstItem kl)// 
         {

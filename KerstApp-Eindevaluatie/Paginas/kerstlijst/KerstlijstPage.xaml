@@ -6,15 +6,17 @@
     <VerticalStackLayout Padding="12" Spacing="12">
 
         <HorizontalStackLayout Spacing="12">
-            <Button Text="Nieuw" Command="{Binding NieuwComm}" />
+            <Button Text="Nieuw" Command="{Binding NieuweKerstItemCommand}" />
             <Button Text="Personen" Command="{Binding OpenPersonenCommand}" />
-            <Button Text="Verversen" Command="{Binding verversCmm}" />
+            <Button Text="Verversen" Command="{Binding VerversCommand}" />
         </HorizontalStackLayout>
 
-        <CollectionView ItemsSource="{Binding Items}" SelectionMode="None">
+        <CollectionView ItemsSource="{Binding Items}"  SelectionMode="Single"
+                SelectedItem="{Binding OpenDetailCommand}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="8" ColumnDefinitions="80,*,Auto" RowDefinitions="Auto,Auto,Auto">
+                    <Grid Padding="8" ColumnDefinitions="80,*,Auto" RowDefinitions="Auto,Auto,Auto"  >
+                   
 
                         <Image Grid.RowSpan="3"
                                WidthRequest="70"
@@ -36,10 +38,7 @@
                                MaxLines="2"
                                Opacity="0.7" />
 
-                        <Button Grid.Column="2" Grid.RowSpan="3"
-                                Text="Open"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.OpenDetailCommand}"
-                                CommandParameter="{Binding .}" />
+                       
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

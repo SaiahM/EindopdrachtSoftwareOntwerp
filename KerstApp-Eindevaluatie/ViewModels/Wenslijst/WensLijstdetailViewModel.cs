@@ -1,4 +1,5 @@
-﻿using KerstApp_Eindevaluatie.ViewModels.Base;
+﻿using KerstApp_Eindevaluatie.Interfaces;
+using KerstApp_Eindevaluatie.ViewModels.Base;
 using KerstAppBL.Model;
 using KerstAppBL.Services;
 using System;
@@ -13,29 +14,30 @@ namespace KerstApp_Eindevaluatie.ViewModels.Wenslijst
     {
         private readonly WenslijstItemService srv;
 
-        public WenslijstItem Item { get; private set; } = new();
+        public WenslijstItem Item { get;  set; } = new();
 
         private string? error;
-        public string? Error { get  { return error; } set { error = value; }  }
+        public string? Foutmelding { get  { return error; } set { error = value; OnPropertyChanged(nameof(Foutmelding)); }  }
 
-        public Command opslaanCmm { get; }
-        public Command anulleer { get; }
+        public Command OpslaanCommand { get; init; }
+        public Command AnulleerCommand { get; init; }
+        private readonly INavigationService _navigationService;
 
-        public WensLijstdetailViewModel(WenslijstItemService service)
+        public WensLijstdetailViewModel(WenslijstItemService service,INavigationService NavigatieService)
         {
             srv = service;
-
-            opslaanCmm = new Command(async () => await opslaan());
-            anulleer = new Command(async () => await Shell.Current.GoToAsync(".."));
+            _navigationService = NavigatieService;
+            OpslaanCommand = new Command(async () => await opslaan());
+            AnulleerCommand = new Command(async () => await _navigationService.GoBackAsync());
         }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            Error = null;
+            Foutmelding = null;
 
-            if (query.TryGetValue("id", out var idObj) && int.TryParse(idObj?.ToString(), out var id))
+            if (query.TryGetValue("wenslijstItem", out var wenslijstItemObj) && wenslijstItemObj is WenslijstItem wenslijstItem)   //
             {
-                Item = srv.GeefWenslijstItemId(id) ?? new WenslijstItem();
+                Item = wenslijstItem;
             }
             else
             {
@@ -45,26 +47,24 @@ namespace KerstApp_Eindevaluatie.ViewModels.Wenslijst
             OnPropertyChanged(nameof(Item));
         }
 
-        private async 
-        Task
-opslaan()
+        private async Task opslaan()
         {
-            Error = null;
+            Foutmelding = null;
 
             if (string.IsNullOrWhiteSpace(Item.Titel))
             {
-                Error = "Titel is verplicht.";
+                Foutmelding = "Titel is verplicht.";
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(Item.Website))
             {
-                Error = "Website is verplicht.";
+                Foutmelding = "Website is verplicht.";
                 return;
             }
 
             srv.VoegWenslijstItemToe(Item); 
-            await Shell.Current.GoToAsync("..");
+            await _navigationService.GoBackAsync();
         }
     }
 }

@@ -6,7 +6,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="16" Spacing="12">
 
-            <Label Text="{Binding Error}" TextColor="Red" />
+            <Label Text="{Binding Foutmelding}" TextColor="Red" />
 
             <Entry Placeholder="Titel"
                    Text="{Binding Item.Titel}" />

@@ -6,7 +6,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="16" Spacing="12">
 
-            <Label Text="{Binding Error}" TextColor="Red" IsVisible="{Binding Error}" />
+            <Label Text="{Binding Foutmelding}" TextColor="Red"  />
 
             <Entry Placeholder="Titel"
                    Text="{Binding Item.Titel}" />
@@ -30,8 +30,8 @@
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="12">
-                <Button Text="Bewaren" Command="{Binding opslaanCmm}" />
-                <Button Text="Annuleren" Command="{Binding anulleer}" />
+                <Button Text="Bewaren" Command="{Binding OpslaanCommand}" />
+                <Button Text="Annuleren" Command="{Binding AnulleerCommand}" />
             </HorizontalStackLayout>
 
         </VerticalStackLayout>

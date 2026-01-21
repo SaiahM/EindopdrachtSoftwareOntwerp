@@ -1,4 +1,5 @@
-﻿using KerstApp_Eindevaluatie.ViewModels.Base;
+﻿using KerstApp_Eindevaluatie.Interfaces;
+using KerstApp_Eindevaluatie.ViewModels.Base;
 using KerstAppBL.Model;
 using KerstAppBL.Services;
 using System;
@@ -30,19 +31,21 @@ namespace KerstApp_Eindevaluatie.ViewModels.Kertslijst
         public string PrijsInput
         { get { return _prijsInput; } set { _prijsInput = value; } }
 
-        private string? _error;
-        public string? Error { get { return _error; } set { _error = value; } }
+        private string? error;
+        public string? Foutmelding { get { return error; } set { error = value; OnPropertyChanged(nameof(Foutmelding)); } }
 
-        public Command SaveCommand { get; }
-        public Command CancelCommand { get; }
+        public Command SaveCommand { get; init; }
+        public Command CancelCommand { get; init; }
+        private readonly INavigationService _navigationService;
 
-        public KerstlijstDetailViewModel(KerstLijstItemService kerstService, PersoonService persoonService)
+        public KerstlijstDetailViewModel(KerstLijstItemService kerstService, PersoonService persoonService, INavigationService Navigatie)
         {
             _kerstService = kerstService;
             _persoonService = persoonService;
+            _navigationService = Navigatie;
 
             SaveCommand = new Command(async () => await Save());
-            CancelCommand = new Command(async () => await Shell.Current.GoToAsync(".."));
+            CancelCommand = new Command(async () => await _navigationService.GoBackAsync());
 
             LoadPersonen();
         }
@@ -56,11 +59,11 @@ namespace KerstApp_Eindevaluatie.ViewModels.Kertslijst
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            Error = null;
+            Foutmelding = null;
 
-            if (query.TryGetValue("id", out var idObj) && int.TryParse(idObj?.ToString(), out var id))
+            if (query.TryGetValue("kerstlijstItem", out var kerstlijstItemObj) && kerstlijstItemObj is KerstlijstItem kerstlijstItem)
             {
-                Item = _kerstService.GeefIdVanKerstLijstItem(id) ?? new KerstlijstItem();
+                Item = kerstlijstItem;
             }
             else
             {
@@ -80,15 +83,15 @@ namespace KerstApp_Eindevaluatie.ViewModels.Kertslijst
 
         private async Task Save()
         {
-            Error = null;
+            Foutmelding = null;
 
             if (string.IsNullOrWhiteSpace(Item.Titel))
             {
-                Error = "Titel is verplicht.";
+                Foutmelding = "Titel is verplicht.";
                 return;
             }
 
-            // Prijs parsing
+          
             if (string.IsNullOrWhiteSpace(PrijsInput))
             {
                 Item.Prijs = null;
@@ -97,13 +100,13 @@ namespace KerstApp_Eindevaluatie.ViewModels.Kertslijst
             {
                 if (!decimal.TryParse(PrijsInput, out var prijs))
                 {
-                    Error = "Prijs heeft een ongeldig formaat.";
+                    Foutmelding = "Prijs heeft een ongeldig formaat.";
                     return;
                 }
 
                 if (prijs < 0)
                 {
-                    Error = "Prijs mag niet negatief zijn.";
+                    Foutmelding = "Prijs mag niet negatief zijn.";
                     return;
                 }
 
@@ -112,7 +115,7 @@ namespace KerstApp_Eindevaluatie.ViewModels.Kertslijst
 
            
             _kerstService.VoegkerstitemToe(Item);
-            await Shell.Current.GoToAsync("..");
+            await _navigationService.GoBackAsync();
         }
     }
 }

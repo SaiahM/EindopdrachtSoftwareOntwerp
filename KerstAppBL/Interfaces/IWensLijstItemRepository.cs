@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace KerstAppBL.Interfaces
 {
-    public interface IWensLijstItemDbRepository
+    public interface IWensLijstItemRepository
     {
-        public List<WenslijstItem> GeefAlle();
+        public List<WenslijstItem> GeefAlleWensItem();
         public WenslijstItem? GeefWenslijstItemId(int id);
         public int VoegWenslijstItem(WenslijstItem wenslijstItem);
         public bool VerwijderWenslijstItem(int id);

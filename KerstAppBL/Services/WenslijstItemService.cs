@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace KerstAppBL.Services
 {
-    public class WenslijstItemService(IWensLijstItemDbRepository repo)
+    public class WenslijstItemService(IWensLijstItemRepository repo)
     {
-        private IWensLijstItemDbRepository Repo { get; } = repo;
+        private IWensLijstItemRepository Repo { get; } = repo;
 
 
-        public List<WenslijstItem> GeefAlleWenslijstItem() => Repo.GeefAlle();
+        public List<WenslijstItem> GeefAlleWenslijstItem() => Repo.GeefAlleWensItem();
 
         public int VoegWenslijstItemToe(WenslijstItem yy)
         {

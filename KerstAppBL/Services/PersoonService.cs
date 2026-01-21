@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace KerstAppBL.Services
 {
-    public class PersoonService(IPersoonLiteDBrepository repo)
+    public class PersoonService(IPersoonRepository repo)
     {
-        private IPersoonLiteDBrepository Repo { get; } = repo;
+        private IPersoonRepository Repo { get; } = repo;
         //IPersoonLiteDBrepository
 
-            public List<Persoon> GeefAllePersonen() => Repo.GeefAlle();
+            public List<Persoon> GeefAllePersonen() => Repo.GeefAllePersonen();
 
         public int VoegPersoonToe(Persoon achternm)// wekrt niet
         {
